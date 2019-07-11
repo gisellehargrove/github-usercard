@@ -52,7 +52,6 @@ const followersArray = [];
 */
 
 const cardCreator = (userObj) => {
-  const elementContainer = [];
   // create card element
   const card = document.createElement('div');
   // add card class to div
@@ -62,10 +61,41 @@ const cardCreator = (userObj) => {
   const imgElement = document.createElement('img');
   // add src attribute
   imgElement.src = userObj.avatar_url;
-  // push into element container
-  elementContainer.push(imgElement);
+  // append to parent
+  card.appendChild(imgElement);
 
+  // create card info container
+  const infoContainer = document.createElement('div');
+  // add class card-info to container
+  infoContainer.classList.add('card-info');
 
+  // create h3 for name
+  const name = document.createElement('h3');
+
+  // create username element
+  const username = document.createElement('p');
+
+  // create location element
+  const location = document.createElement('p');
+
+  // create profile container
+  const profileContainer = document.createElement('p');
+
+  // create anchor for github address
+  const address = document.createElement('a');
+  // set href to github address
+  address.href = userObj.html_url;
+  // append address to profile container
+  profileContainer.appendChild(address);
+
+  // create followers element
+  const followers = document.createElement('p');
+
+  // create following element
+  const following = document.createElement('p');
+
+  // create bio element
+  const bio = document.createElement('p');
 
 };
 
