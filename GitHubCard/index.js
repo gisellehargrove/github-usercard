@@ -3,8 +3,8 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/gisellehargrove').then((res) => {
-  console.log(res.data);
+axios.get('https://api.github.com/users/gisellehargrove').then((response) => {
+  console.log(response.data);
 });
 
 
@@ -50,6 +50,25 @@ const followersArray = [];
 </div>
 
 */
+
+const cardCreator = (userObj) => {
+  const elementContainer = [];
+  // create card element
+  const card = document.createElement('div');
+  // add card class to div
+  card.classList.add('card');
+
+  // create img element
+  const imgElement = document.createElement('img');
+  // add src attribute
+  imgElement.src = userObj.avatar_url;
+  // push into element container
+  elementContainer.push(imgElement);
+
+
+
+};
+
 
 /* List of LS Instructors Github username's:
   tetondan
