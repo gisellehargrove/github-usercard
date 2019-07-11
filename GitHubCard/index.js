@@ -3,9 +3,13 @@
            https://api.github.com/users/<your name>
 */
 
+// make a get request to recieve my github profile information
 axios.get('https://api.github.com/users/gisellehargrove').then((response) => {
+  // pass my data into the creator function
   const userCard = cardCreator(response.data);
+  // select the cards container
   const cardsContainer = document.querySelector('.cards');
+  // append my usercard to the cardsContainer
   cardsContainer.appendChild(userCard);
 });
 
