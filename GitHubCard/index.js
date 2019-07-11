@@ -4,7 +4,9 @@
 */
 
 axios.get('https://api.github.com/users/gisellehargrove').then((response) => {
-  console.log(cardCreator(response.data));
+  const userCard = cardCreator(response.data);
+  const cardsContainer = document.querySelector('.cards');
+  cardsContainer.appendChild(userCard);
 });
 
 
@@ -89,7 +91,7 @@ const cardCreator = (userObj) => {
   // create location element
   const location = document.createElement('p');
   // set text content
-  location.textContent = 'Location: ' + userObj.location || 'USA';
+  location.textContent = 'Location: ' + userObj.location;
   // append to card-info parent
   infoContainer.appendChild(location);
 
@@ -138,8 +140,6 @@ const cardCreator = (userObj) => {
   return card;
 
 };
-
-console.log(cardCreator())
 
 /* List of LS Instructors Github username's:
   tetondan
