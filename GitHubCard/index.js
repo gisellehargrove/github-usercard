@@ -4,7 +4,7 @@
 */
 
 axios.get('https://api.github.com/users/gisellehargrove').then((response) => {
-  console.log(response.data);
+  console.log(cardCreator(response.data));
 });
 
 
@@ -71,34 +71,75 @@ const cardCreator = (userObj) => {
 
   // create h3 for name
   const name = document.createElement('h3');
+  // append to card-info parent
+  infoContainer.appendChild(name);
+  // set text content
+  name.textContent = userObj.name;
 
   // create username element
   const username = document.createElement('p');
+  // add username class
+  username.classList.add('username');
+  // set text content
+  username.textContent = userObj.login;
+  // append to card-info parent
+  infoContainer.appendChild(username);
+
 
   // create location element
   const location = document.createElement('p');
+  // set text content
+  location.textContent = 'Location: ' + userObj.location || 'USA';
+  // append to card-info parent
+  infoContainer.appendChild(location);
 
   // create profile container
   const profileContainer = document.createElement('p');
+  // set text content
+  profileContainer.textContent = 'Profile: ';
 
   // create anchor for github address
   const address = document.createElement('a');
   // set href to github address
   address.href = userObj.html_url;
+  // set text content
+  address.textContent = userObj.url;
   // append address to profile container
   profileContainer.appendChild(address);
 
+  // append profileContainer to card-info parent
+  infoContainer.appendChild(profileContainer);
+
   // create followers element
   const followers = document.createElement('p');
+  // set text content
+  followers.textContent = 'Followers: ' + userObj.followers
+  // append to card-info parent
+  infoContainer.appendChild(followers);
 
   // create following element
   const following = document.createElement('p');
+  // set text content
+  following.textContent = 'Following: ' + userObj.following;
+  // append to card-info parent
+  infoContainer.appendChild(following);
 
   // create bio element
   const bio = document.createElement('p');
+  // set text content
+  bio.textContent = 'Bio: ' + userObj.bio;
+  // append to card-info parent
+  infoContainer.appendChild(bio);
+
+  // append card info container to card container
+  card.appendChild(infoContainer);
+
+  // return component
+  return card;
 
 };
 
+console.log(cardCreator())
 
 /* List of LS Instructors Github username's:
   tetondan
