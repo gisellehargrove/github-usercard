@@ -51,6 +51,14 @@ followersArray.forEach((user) => {
     const userCard = cardCreator(response.data);
     const cardsContainer = document.querySelector('.cards');
     cardsContainer.appendChild(userCard);
+  }).then(() => {
+    axios.get(url + '/followers').then((response) => {
+      response.data.forEach((userObj) => {
+        const userCard = cardCreator(userObj);
+        const cardsContainer = document.querySelector('.cards');
+        cardsContainer.appendChild(userCard);
+      });
+    })
   });
 });
 
@@ -94,10 +102,10 @@ const cardCreator = (userObj) => {
 
   // create h3 for name
   const name = document.createElement('h3');
-  // append to card-info parent
-  infoContainer.appendChild(name);
   // set text content
   name.textContent = userObj.name;
+  // append to card-info parent
+  infoContainer.appendChild(name);
 
   // create username element
   const username = document.createElement('p');
