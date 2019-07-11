@@ -11,6 +11,10 @@ axios.get('https://api.github.com/users/gisellehargrove').then((response) => {
   const cardsContainer = document.querySelector('.cards');
   // append my usercard to the cardsContainer
   cardsContainer.appendChild(userCard);
+  // add github calendar to my user card
+  new GitHubCalendar('.calendar', 'gisellehargrove');
+}).catch((err) => {
+  console.log(err)
 });
 
 
@@ -47,9 +51,9 @@ const followersArray = [
 
 followersArray.forEach((user) => {
   const url = 'https://api.github.com/users/' + user;
+  const cardsContainer = document.querySelector('.cards');
   axios.get(url).then((response) => {
     const userCard = cardCreator(response.data);
-    const cardsContainer = document.querySelector('.cards');
     cardsContainer.appendChild(userCard);
   }).then(() => {
     axios.get(url + '/followers').then((response) => {
@@ -59,6 +63,8 @@ followersArray.forEach((user) => {
         cardsContainer.appendChild(userCard);
       });
     })
+  }).catch((err) => {
+    console.log(err);
   });
 });
 
@@ -162,8 +168,18 @@ const cardCreator = (userObj) => {
   // append to card-info parent
   infoContainer.appendChild(bio);
 
+  // create calendar element
+  const calendar = document.createElement('div');
+  // add calendar class
+  calendar.classList.add('calendar');
+  // add info to calendar
+  // new GitHubCalendar('.calendar', userObj.login);
+  // append to infoContainer
+  card.appendChild(calendar);
+
   // append card info container to card container
   card.appendChild(infoContainer);
+
 
   // return component
   return card;
